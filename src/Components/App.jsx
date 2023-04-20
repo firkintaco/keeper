@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
-import notes from "../notes";
+//import notes from "../notes";
+import CreateArea from "./CreateArea";
 
 const siteName = "Guugul Keep";
 
 export default function App() {
+  const [notes, setNotes] = useState([]);
+  function AddNote(note) {
+    setNotes((prev) => {
+      return [...prev, note];
+    });
+    console.log(note, notes);
+  }
+  function deleteNote(id) {
+    setNotes((prev) => {
+      return prev.filter((item) => {
+        return item.id !== id;
+      });
+    });
+  }
   return (
     <div>
       <Header siteName={siteName} />
+      <CreateArea onAdd={AddNote} />
       {notes.map((note) => (
-        <Note key={note.key} name={note.title} content={note.content} />
+        <Note
+          key={note.id}
+          id={note.id}
+          name={note.title}
+          content={note.content}
+          deleteNote={deleteNote}
+        />
       ))}
       <Footer />
     </div>
