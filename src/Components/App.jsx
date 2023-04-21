@@ -5,7 +5,7 @@ import Note from "./Note";
 //import notes from "../notes";
 import CreateArea from "./CreateArea";
 
-const siteName = "Guugul Keep";
+const siteName = "kEEp";
 
 export default function App() {
   const [notes, setNotes] = useState([]);
